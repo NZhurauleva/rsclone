@@ -1,0 +1,632 @@
+{
+    "frames": [
+        {
+            "filename": "bandit02_idle_0",
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_idle_1",
+            "frame": {
+                "x": 120,
+                "y": 0,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_idle_2",
+            "frame": {
+                "x": 240,
+                "y": 0,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_idle_3",
+            "frame": {
+                "x": 360,
+                "y": 0,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_idle_4",
+            "frame": {
+                "x": 480,
+                "y": 0,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_idle_5",
+            "frame": {
+                "x": 600,
+                "y": 0,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_idle_6",
+            "frame": {
+                "x": 720,
+                "y": 0,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_idle_7",
+            "frame": {
+                "x": 840,
+                "y": 0,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_walk_0",
+            "frame": {
+                "x": 0,
+                "y": 97,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_walk_1",
+            "frame": {
+                "x": 120,
+                "y": 97,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_walk_2",
+            "frame": {
+                "x": 240,
+                "y": 97,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_walk_3",
+            "frame": {
+                "x": 360,
+                "y": 97,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_walk_4",
+            "frame": {
+                "x": 480,
+                "y": 97,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_walk_5",
+            "frame": {
+                "x": 600,
+                "y": 97,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_walk_6",
+            "frame": {
+                "x": 720,
+                "y": 97,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_walk_7",
+            "frame": {
+                "x": 840,
+                "y": 97,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_attack_0",
+            "frame": {
+                "x": 0,
+                "y": 194,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_attack_1",
+            "frame": {
+                "x": 120,
+                "y": 194,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_attack_2",
+            "frame": {
+                "x": 240,
+                "y": 194,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_attack_3",
+            "frame": {
+                "x": 360,
+                "y": 194,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_attack_4",
+            "frame": {
+                "x": 480,
+                "y": 194,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_attack_5",
+            "frame": {
+                "x": 600,
+                "y": 194,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_attack_6",
+            "frame": {
+                "x": 720,
+                "y": 194,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_attack_7",
+            "frame": {
+                "x": 840,
+                "y": 194,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_jumpup_0",
+            "frame": {
+                "x": 0,
+                "y": 291,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_jumpup_1",
+            "frame": {
+                "x": 120,
+                "y": 291,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_jumpup_3",
+            "frame": {
+                "x": 240,
+                "y": 291,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_jumpup_2",
+            "frame": {
+                "x": 360,
+                "y": 291,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_jumpup_5",
+            "frame": {
+                "x": 480,
+                "y": 291,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_jumpup_4",
+            "frame": {
+                "x": 600,
+                "y": 291,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_jumpup_6",
+            "frame": {
+                "x": 720,
+                "y": 291,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_jumpup_7",
+            "frame": {
+                "x": 840,
+                "y": 291,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_hurt_0",
+            "frame": {
+                "x": 0,
+                "y": 388,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_hurt_1",
+            "frame": {
+                "x": 120,
+                "y": 388,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_hurt_2",
+            "frame": {
+                "x": 240,
+                "y": 388,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_hurt_3",
+            "frame": {
+                "x": 360,
+                "y": 388,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_hurt_5",
+            "frame": {
+                "x": 480,
+                "y": 388,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_hurt_4",
+            "frame": {
+                "x": 600,
+                "y": 388,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_hurt_6",
+            "frame": {
+                "x": 720,
+                "y": 388,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_hurt_7",
+            "frame": {
+                "x": 840,
+                "y": 388,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_die_0",
+            "frame": {
+                "x": 0,
+                "y": 485,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_die_1",
+            "frame": {
+                "x": 120,
+                "y": 485,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_die_2",
+            "frame": {
+                "x": 240,
+                "y": 485,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_die_3",
+            "frame": {
+                "x": 360,
+                "y": 485,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_die_4",
+            "frame": {
+                "x": 480,
+                "y": 485,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_die_5",
+            "frame": {
+                "x": 600,
+                "y": 485,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_die_6",
+            "frame": {
+                "x": 720,
+                "y": 485,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bandit02_die_7",
+            "frame": {
+                "x": 840,
+                "y": 485,
+                "w": 120,
+                "h": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Phaser3",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}
