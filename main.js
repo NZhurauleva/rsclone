@@ -1,3 +1,6 @@
+//import GameScene from './game.js'
+//import TitleScene from './title.js'
+
 const config = {
     type: Phaser.AUTO,
     parent: 'game',
@@ -7,12 +10,12 @@ const config = {
       mode: Phaser.Scale.RESIZE,
       autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [TitleScene, GameSceneOne, GameSceneTwo, GameSceneThree],
+    scene: [TitleScene, PreloaderScene, GameSceneOne, GameSceneTwo, GameSceneThree],
     physics: {
       default: 'arcade',
       arcade: {
         gravity: { y: 450 },
-        debug: true,
+        debug: false
       },
     }
   };
