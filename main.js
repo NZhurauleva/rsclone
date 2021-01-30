@@ -7,12 +7,12 @@ const config = {
       mode: Phaser.Scale.RESIZE,
       autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [GameScene],
+    scene: [TitleScene, GameSceneOne, GameSceneTwo, GameSceneThree],
     physics: {
       default: 'arcade',
       arcade: {
         gravity: { y: 450 },
-        debug: true
+        debug: true,
       },
     }
   };
