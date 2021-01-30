@@ -1,8 +1,6 @@
-class GameScene extends Phaser.Scene {
+class GameSceneTwo extends Phaser.Scene {
   constructor() {
-    super({
-      key: "GameScene",
-    });
+    super("level2");
 
     this.keyCTRL;
     this.jumpSound;
@@ -13,7 +11,7 @@ class GameScene extends Phaser.Scene {
   preload() {
     // Image layers from Tiled can't be exported to Phaser 3 (as yet)
     // So we add the background image separately
-    this.load.image("background", "assets/images/background.png");
+    this.load.image("background2", "assets/images/background2.png");
     // Load the tileset image file, needed for the map to know what
     // tiles to draw on the screen
     this.load.image("tiles", "assets/tilesets/platformPack_tilesheet.png");
@@ -24,28 +22,28 @@ class GameScene extends Phaser.Scene {
     this.load.image("fake_object", "assets/images/Transparency.png");
 
     this.load.image("coin", "assets/images/coin.png");
+    this.load.image("exit", "assets/images/exit.png");
     this.load.audio("coin-sound", "assets/sounds/coin.mp3");
     this.load.audio("jump", "assets/sounds/jump.wav");
+    this.load.audio("damage", "assets/sounds/damage.mp3");
     // Load the export Tiled JSON
-    this.load.tilemapTiledJSON("map", "assets/tilemaps/level1.json");
+    this.load.tilemapTiledJSON("map2", "assets/tilemaps/level2.json");
     // Load player animations from the player spritesheet and atlas JSON
     this.load.atlas(
       "player",
       "assets/images/bandit.png",
       "assets/images/bandit_atlas.json"
     );
-
-   
   }
 
   create() {
     // Create a tile map, which is used to bring our level in Tiled
     // to our game world in Phaser
-    const map = this.make.tilemap({ key: "map" });
+    const map = this.make.tilemap({ key: "map2" });
     // Add the tileset to the map so the images would load correctly in Phaser
     const tileset = map.addTilesetImage("kenney_simple_platformer", "tiles");
     // Place the background image in our game world
-    const backgroundImage = this.add.image(0, 0, "background").setOrigin(0, 0);
+    const backgroundImage = this.add.image(0, 0, "background2").setOrigin(0, 0);
     // Scale the image to better match our game's resolution
     backgroundImage.setScale(10, 0.8);
     // Add the platform layer as a static group, the player would be able
@@ -60,10 +58,16 @@ class GameScene extends Phaser.Scene {
 
     //////музыка прыжка////////
     this.jumpSound = this.sound.add("jump");
-    this.jumpSound.setVolume(0.1);
+    this.jumpSound.setVolume(0.5);
+
+    ///////////музыка урона//////////
+    const damageSound = this.sound.add("damage");
+    damageSound.setVolume(0.5);
 
     //////////прыжжок на ctrl/////
-    this.keyCTRL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
+    this.keyCTRL = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.CTRL
+    );
 
     // Add the player to the game world
     this.player = this.physics.add.sprite(50, 300, "player");
@@ -71,7 +75,7 @@ class GameScene extends Phaser.Scene {
     this.player.body.setSize(80, 100, 16, 16);
     this.player.setBounce(0.1); // our player will bounce from items
     this.player.setCollideWorldBounds(true); // don't go out of the map
-    this.physics.add.collider(this.player, platforms);
+    let platColl = this.physics.add.collider(this.player, platforms);
 
     // Create the walking animation using the last 2 frames of
     // the atlas' first row
@@ -131,6 +135,16 @@ class GameScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+
+    this.anims.create({
+      key: "die",
+      frames: this.anims.generateFrameNames("player", {
+        prefix: "bandit02_die_",
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 10,
+    });
     // Enable user input via cursor keys
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -168,7 +182,7 @@ class GameScene extends Phaser.Scene {
 
     // Add collision between the player and the spikes
 
-    this.physics.add.collider(
+    let otherColl = this.physics.add.collider(
       this.player,
       this.spikes,
       playerHit,
@@ -195,7 +209,7 @@ class GameScene extends Phaser.Scene {
 
     ////////////////////////////////Создаем монеты////////////////////////
     const coinSound = this.sound.add("coin-sound");
-    coinSound.setVolume(0.1);
+    coinSound.setVolume(0.5);
 
     const CoinLayer = map.getObjectLayer("CoinLayer")["objects"];
 
@@ -246,10 +260,31 @@ class GameScene extends Phaser.Scene {
       if (percent > 0) {
         graphics.fillStyle(0x00ff00);
         graphics.fillRoundedRect(10, 10, width * percent, 20, 5);
-      } 
+      }
     }
 
-    
+    //////////////////////Создаем Выход////////////////////////////
+
+    //const coinSound = this.sound.add("coin-sound");
+    //coinSound.setVolume(0.1);
+
+    const ExitLayer = map.getObjectLayer("Exit")["objects"];
+    let exit = this.physics.add.staticGroup();
+    //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
+    ExitLayer.forEach((object) => {
+      let obj = exit.create(
+        object.x + 30,
+        object.y + 230 - object.height,
+        "exit"
+      );
+      obj.body.setSize(obj.width - 30, obj.height - 30).setOffset(15, 15);
+    });
+    this.physics.add.overlap(this.player, exit, nextLevel, null, this);
+
+    function nextLevel (){
+        this.scene.remove('level2');
+        this.scene.start('level3');
+      }
     /**
      * playerHit resets the player's state when it dies from colliding with a spike
      * @param {*} player - player sprite
@@ -258,60 +293,70 @@ class GameScene extends Phaser.Scene {
     function playerDrown(player, spike) {
       this.health = 100;
       this.coinScore = 0;
-      this.scene.restart('GameScene');
-      // Set velocity back to 0
-      player.setVelocity(0, 0);
-      // Put the player back in its original position
-      player.setX(50);
-      player.setY(300);
-      // Use the default `idle` animation
-      player.play("idle", true);
-      // Set the visibility to 0 i.e. hide the player
-      player.setAlpha(0);
-      // Add a tween that 'blinks' until the player is gradually visible
-      let tw = this.tweens.add({
-        targets: player,
-        alpha: 1,
-        duration: 100,
-        ease: "Linear",
-        repeat: 5,
-      });
+      this.scene.restart("level2");
+      /*// Set velocity back to 0
+        player.setVelocity(0, 0);
+        // Put the player back in its original position
+        player.setX(50);
+        player.setY(300);
+        // Use the default `idle` animation
+        player.play("idle", true);
+        // Set the visibility to 0 i.e. hide the player
+        player.setAlpha(0);
+        // Add a tween that 'blinks' until the player is gradually visible
+        let tw = this.tweens.add({
+          targets: player,
+          alpha: 1,
+          duration: 100,
+          ease: "Linear",
+          repeat: 5,
+        });*/
     }
 
     function playerHit(player, spike) {
-      player.setVelocityY(-250);
-      player.play("hurt", true);
+      if (this.health <= 0) {
+        player.play("die", true);
+        this.physics.world.removeCollider(platColl);
+        this.physics.world.removeCollider(otherColl);
+        setTimeout(() => {
+          this.scene.restart("level2");
+          this.health = 100;
+          this.coinScore = 0;
+        }, 2000);
+      } else {
+        damageSound.play();
+        player.setVelocityY(-250);
+        player.play("hurt", true);
 
-      const startColor = Phaser.Display.Color.ValueToColor(0xffffff);
-      const endColor = Phaser.Display.Color.ValueToColor(0xff0000);
+        const startColor = Phaser.Display.Color.ValueToColor(0xffffff);
+        const endColor = Phaser.Display.Color.ValueToColor(0xff0000);
 
-      this.tweens.addCounter({
-        from: 0,
-        to: 100,
-        alpha: 1,
-        duration: 100,
-        repeat: 2,
-        yoyo: true,
-        onUpdate: (tween) => {
-          const value = tween.getValue();
-          const colorObject = Phaser.Display.Color.Interpolate.ColorWithColor(
-            startColor,
-            endColor,
-            100,
-            value
-          );
-          const color = Phaser.Display.Color.GetColor(
-            colorObject.r,
-            colorObject.g,
-            colorObject.b
-          );
-          this.player.setTint(color);
-        },
-      });
+        this.tweens.addCounter({
+          from: 0,
+          to: 100,
+          alpha: 1,
+          duration: 100,
+          repeat: 2,
+          yoyo: true,
+          onUpdate: (tween) => {
+            const value = tween.getValue();
+            const colorObject = Phaser.Display.Color.Interpolate.ColorWithColor(
+              startColor,
+              endColor,
+              100,
+              value
+            );
+            const color = Phaser.Display.Color.GetColor(
+              colorObject.r,
+              colorObject.g,
+              colorObject.b
+            );
+            this.player.setTint(color);
+          },
+        });
+      }
     }
-
-   
-}
+  }
 
   update() {
     // Control the player with left or right keys

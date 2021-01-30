@@ -1,8 +1,6 @@
-class GameScene extends Phaser.Scene {
+class GameSceneOne extends Phaser.Scene {
   constructor() {
-    super({
-      key: "GameScene",
-    });
+    super("level1");
 
     this.keyCTRL;
     this.jumpSound;
@@ -24,8 +22,12 @@ class GameScene extends Phaser.Scene {
     this.load.image("fake_object", "assets/images/Transparency.png");
 
     this.load.image("coin", "assets/images/coin.png");
+    this.load.image("exit", "assets/images/exit.png");
     this.load.audio("coin-sound", "assets/sounds/coin.mp3");
     this.load.audio("jump", "assets/sounds/jump.wav");
+    this.load.audio("damage", "assets/sounds/damage.mp3");
+    this.load.audio("music", "assets/sounds/level11.mp3");
+  
     // Load the export Tiled JSON
     this.load.tilemapTiledJSON("map", "assets/tilemaps/level1.json");
     // Load player animations from the player spritesheet and atlas JSON
@@ -34,8 +36,6 @@ class GameScene extends Phaser.Scene {
       "assets/images/bandit.png",
       "assets/images/bandit_atlas.json"
     );
-
-   
   }
 
   create() {
@@ -60,7 +60,16 @@ class GameScene extends Phaser.Scene {
 
     //////музыка прыжка////////
     this.jumpSound = this.sound.add("jump");
-    this.jumpSound.setVolume(0.1);
+    this.jumpSound.setVolume(0.5);
+
+    ///////////музыка урона//////////
+    const damageSound = this.sound.add("damage");
+    damageSound.setVolume(0.5);
+
+    let music = this.sound.add("music");
+    music.setVolume(0.1);
+    music.setLoop(true);
+    music.play();
 
     //////////прыжжок на ctrl/////
     this.keyCTRL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
@@ -71,7 +80,7 @@ class GameScene extends Phaser.Scene {
     this.player.body.setSize(80, 100, 16, 16);
     this.player.setBounce(0.1); // our player will bounce from items
     this.player.setCollideWorldBounds(true); // don't go out of the map
-    this.physics.add.collider(this.player, platforms);
+    let platColl = this.physics.add.collider(this.player, platforms);
 
     // Create the walking animation using the last 2 frames of
     // the atlas' first row
@@ -131,6 +140,16 @@ class GameScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+
+    this.anims.create({
+      key: "die",
+      frames: this.anims.generateFrameNames("player", {
+        prefix: "bandit02_die_",
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 10
+    });
     // Enable user input via cursor keys
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -168,7 +187,7 @@ class GameScene extends Phaser.Scene {
 
     // Add collision between the player and the spikes
 
-    this.physics.add.collider(
+    let otherColl = this.physics.add.collider(
       this.player,
       this.spikes,
       playerHit,
@@ -195,7 +214,7 @@ class GameScene extends Phaser.Scene {
 
     ////////////////////////////////Создаем монеты////////////////////////
     const coinSound = this.sound.add("coin-sound");
-    coinSound.setVolume(0.1);
+    coinSound.setVolume(0.5);
 
     const CoinLayer = map.getObjectLayer("CoinLayer")["objects"];
 
@@ -249,7 +268,29 @@ class GameScene extends Phaser.Scene {
       } 
     }
 
+
+        //////////////////////Создаем Выход////////////////////////////
+
+        //const coinSound = this.sound.add("coin-sound");
+        //coinSound.setVolume(0.1);
     
+        const ExitLayer = map.getObjectLayer("Exit")["objects"];
+        let exit = this.physics.add.staticGroup();
+        //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
+        ExitLayer.forEach((object) => {
+          let obj = exit.create(
+            object.x + 30,
+            object.y + 230 - object.height,
+            "exit"
+          );
+          obj.body.setSize(obj.width - 30, obj.height - 30).setOffset(15, 15);
+        });
+        this.physics.add.overlap(this.player, exit, nextLevel, null, this);
+    
+    function nextLevel (){
+      this.scene.remove('level1');
+      this.scene.start('level2');
+    }
     /**
      * playerHit resets the player's state when it dies from colliding with a spike
      * @param {*} player - player sprite
@@ -258,8 +299,9 @@ class GameScene extends Phaser.Scene {
     function playerDrown(player, spike) {
       this.health = 100;
       this.coinScore = 0;
-      this.scene.restart('GameScene');
-      // Set velocity back to 0
+      music.stop();
+      this.scene.restart('level1');
+      /*// Set velocity back to 0
       player.setVelocity(0, 0);
       // Put the player back in its original position
       player.setX(50);
@@ -275,43 +317,56 @@ class GameScene extends Phaser.Scene {
         duration: 100,
         ease: "Linear",
         repeat: 5,
-      });
+      });*/
     }
 
     function playerHit(player, spike) {
-      player.setVelocityY(-250);
-      player.play("hurt", true);
-
-      const startColor = Phaser.Display.Color.ValueToColor(0xffffff);
-      const endColor = Phaser.Display.Color.ValueToColor(0xff0000);
-
-      this.tweens.addCounter({
-        from: 0,
-        to: 100,
-        alpha: 1,
-        duration: 100,
-        repeat: 2,
-        yoyo: true,
-        onUpdate: (tween) => {
-          const value = tween.getValue();
-          const colorObject = Phaser.Display.Color.Interpolate.ColorWithColor(
-            startColor,
-            endColor,
-            100,
-            value
-          );
-          const color = Phaser.Display.Color.GetColor(
-            colorObject.r,
-            colorObject.g,
-            colorObject.b
-          );
-          this.player.setTint(color);
-        },
-      });
+      if(this.health <= 0){
+        player.play("die", true);
+        this.physics.world.removeCollider(platColl);
+        this.physics.world.removeCollider(otherColl);
+        setTimeout(() => {
+          music.stop();
+          this.scene.restart('level1');
+          this.health = 100;
+          this.coinScore = 0;
+        }, 2000);
+        
+      }else {
+        damageSound.play();
+        player.setVelocityY(-250);
+        player.play("hurt", true);
+  
+        const startColor = Phaser.Display.Color.ValueToColor(0xffffff);
+        const endColor = Phaser.Display.Color.ValueToColor(0xff0000);
+  
+        this.tweens.addCounter({
+          from: 0,
+          to: 100,
+          alpha: 1,
+          duration: 100,
+          repeat: 2,
+          yoyo: true,
+          onUpdate: (tween) => {
+            const value = tween.getValue();
+            const colorObject = Phaser.Display.Color.Interpolate.ColorWithColor(
+              startColor,
+              endColor,
+              100,
+              value
+            );
+            const color = Phaser.Display.Color.GetColor(
+              colorObject.r,
+              colorObject.g,
+              colorObject.b
+            );
+            this.player.setTint(color);
+          },
+        });
+      }
     }
 
-   
-}
+  }
 
   update() {
     // Control the player with left or right keys
