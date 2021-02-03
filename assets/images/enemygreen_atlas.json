@@ -1,0 +1,112 @@
+{
+    "frames": [
+        {
+            "filename": "frame-1",
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 67,
+                "h": 73
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "frame-2",
+            "frame": {
+                "x": 67,
+                "y": 0,
+                "w": 67,
+                "h": 73
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "frame-3",
+            "frame": {
+                "x": 134,
+                "y": 0,
+                "w": 67,
+                "h": 73
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "frame-4",
+            "frame": {
+                "x": 201,
+                "y": 0,
+                "w": 67,
+                "h": 73
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "frame-5",
+            "frame": {
+                "x": 268,
+                "y": 0,
+                "w": 67,
+                "h": 73
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "frame-6",
+            "frame": {
+                "x": 335,
+                "y": 0,
+                "w": 67,
+                "h": 73
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "frame-7",
+            "frame": {
+                "x": 402,
+                "y": 0,
+                "w": 67,
+                "h": 73
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "frame-8",
+            "frame": {
+                "x": 469,
+                "y": 0,
+                "w": 67,
+                "h": 73
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Phaser3",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}

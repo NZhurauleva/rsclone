@@ -3,8 +3,6 @@ class PreloaderScene extends Phaser.Scene {
         super("preloader");
     }
     preload() {
-        this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
-
         const progressBar = this.add.graphics();
         const progressBox = this.add.graphics();
 
@@ -13,15 +11,33 @@ class PreloaderScene extends Phaser.Scene {
 
         const loadingText = this.make.text({
             x: width / 2,
-            y: height / 2 - 50,
+            y: height / 2 - 20,
             text: 'Loading...',
             style: {
                 fontFamily: 'Finger Paint',
-                fontSize: 40,
+                fontSize: 30,
                 fill: '#ffffff'
             }
         });
         loadingText.setOrigin(0.5, 0.5);
+
+        const rulesText = [
+            'Avoid flying birds and rockets, they cannot be killed. ',
+            'Collect 33 coins and key.',
+            'The rest of the enemies can be killed by jumping on them.',
+            'A sword for courage, you can wave it by pressing Ctrl.'
+        ];
+
+        const text = this.add.text(width / 2, height / 2 + 150, rulesText, { fontFamily: "Arial Black", fontSize: 30, align: 'center' }).setOrigin(0.5, 0.5);
+        text.setStroke('#000000', 4);
+        const gradient = text.context.createLinearGradient(0, 0, 0, text.height);
+        gradient.addColorStop(0, '#111111');
+        gradient.addColorStop(.5, '#ffffff');
+        gradient.addColorStop(.5, '#aaaaaa');
+        gradient.addColorStop(1, '#111111');
+
+        text.setFill(gradient);
+
 
         const percentText = this.make.text({
             x: width / 2,
@@ -46,7 +62,6 @@ class PreloaderScene extends Phaser.Scene {
         });
 
         this.load.on('fileprogress', function (file) {
-            console.log(file.src);
         });
 
         this.load.on('complete', function () {
@@ -56,9 +71,9 @@ class PreloaderScene extends Phaser.Scene {
             percentText.destroy();
         });
 
-        this.load.image('logo', 'logoyocton.png');
+        this.load.image('logo', 'assets/images/playerbandit.png');
         for (let i = 0; i < 500; i++) {
-            this.load.image('logo' + i, 'logoyocton.png');
+            this.load.image('logo' + i, 'assets/images/playerbandit.png');
         }
     }
 

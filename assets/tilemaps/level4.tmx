@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="25" height="9" tilewidth="64" tileheight="64" infinite="0" nextlayerid="9" nextobjectid="71">
+ <tileset firstgid="1" name="kenney_simple_platformer" tilewidth="64" tileheight="64" tilecount="306" columns="18">
+  <image source="../../../game/creating-a-platformer-with-phaser-3/assets/tilesets/platformPack_tilesheet.png" width="1152" height="1088"/>
+ </tileset>
+ <layer id="1" name="Platforms" width="25" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,115,0,0,0,0,115,0,0,0,0,0,0,0,115,0,0,0,0,115,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+115,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,115,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="3" name="Enemybomb">
+  <object id="70" x="1536" y="-64">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="Enemybird">
+  <object id="69" x="1344" y="-64">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="Water">
+  <object id="4" gid="297" x="0" y="512" width="64" height="64"/>
+  <object id="5" gid="297" x="64" y="512" width="64" height="64"/>
+  <object id="6" gid="297" x="128" y="512" width="64" height="64"/>
+  <object id="7" gid="297" x="192" y="512" width="64" height="64"/>
+  <object id="8" gid="297" x="256" y="512" width="64" height="64"/>
+  <object id="9" gid="297" x="320" y="512" width="64" height="64"/>
+  <object id="10" gid="297" x="384" y="512" width="64" height="64"/>
+  <object id="11" gid="297" x="448" y="512" width="64" height="64"/>
+  <object id="12" gid="297" x="512" y="512" width="64" height="64"/>
+  <object id="13" gid="297" x="576" y="512" width="64" height="64"/>
+  <object id="14" gid="297" x="640" y="512" width="64" height="64"/>
+  <object id="15" gid="297" x="704" y="512" width="64" height="64"/>
+  <object id="16" gid="297" x="768" y="512" width="64" height="64"/>
+  <object id="17" gid="297" x="832" y="512" width="64" height="64"/>
+  <object id="18" gid="297" x="896" y="512" width="64" height="64"/>
+  <object id="19" gid="297" x="960" y="512" width="64" height="64"/>
+  <object id="20" gid="297" x="1024" y="512" width="64" height="64"/>
+  <object id="21" gid="297" x="1088" y="512" width="64" height="64"/>
+  <object id="22" gid="297" x="1152" y="512" width="64" height="64"/>
+  <object id="23" gid="297" x="1216" y="512" width="64" height="64"/>
+  <object id="24" gid="297" x="1280" y="512" width="64" height="64"/>
+  <object id="25" gid="297" x="1344" y="512" width="64" height="64"/>
+  <object id="26" gid="297" x="1408" y="512" width="64" height="64"/>
+  <object id="27" gid="297" x="1472" y="512" width="64" height="64"/>
+  <object id="28" gid="297" x="1472" y="576" width="64" height="64"/>
+  <object id="29" gid="297" x="1408" y="576" width="64" height="64"/>
+  <object id="30" gid="297" x="1280" y="576" width="64" height="64"/>
+  <object id="31" gid="297" x="1344" y="576" width="64" height="64"/>
+  <object id="32" gid="297" x="1216" y="576" width="64" height="64"/>
+  <object id="33" gid="297" x="1152" y="576" width="64" height="64"/>
+  <object id="34" gid="297" x="1088" y="576" width="64" height="64"/>
+  <object id="35" gid="297" x="1024" y="576" width="64" height="64"/>
+  <object id="36" gid="297" x="960" y="576" width="64" height="64"/>
+  <object id="37" gid="297" x="896" y="576" width="64" height="64"/>
+  <object id="38" gid="297" x="832" y="576" width="64" height="64"/>
+  <object id="39" gid="297" x="768" y="576" width="64" height="64"/>
+  <object id="40" gid="297" x="704" y="576" width="64" height="64"/>
+  <object id="41" gid="297" x="640" y="576" width="64" height="64"/>
+  <object id="42" gid="297" x="576" y="576" width="64" height="64"/>
+  <object id="43" gid="297" x="512" y="576" width="64" height="64"/>
+  <object id="44" gid="297" x="448" y="576" width="64" height="64"/>
+  <object id="45" gid="297" x="384" y="576" width="64" height="64"/>
+  <object id="46" gid="297" x="320" y="576" width="64" height="64"/>
+  <object id="47" gid="297" x="256" y="576" width="64" height="64"/>
+  <object id="48" gid="297" x="192" y="576" width="64" height="64"/>
+  <object id="49" gid="297" x="128" y="576" width="64" height="64"/>
+  <object id="50" gid="297" x="64" y="576" width="64" height="64"/>
+  <object id="51" gid="297" x="0" y="576" width="64" height="64"/>
+  <object id="66" gid="297" x="1536" y="512" width="64" height="64"/>
+  <object id="67" gid="297" x="1536" y="576" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup id="6" name="Spikes">
+  <object id="52" gid="160" x="736" y="384" width="64" height="64"/>
+  <object id="53" gid="160" x="800" y="384" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup id="7" name="CoinLayer">
+  <object id="54" gid="181" x="512" y="128" width="64" height="64"/>
+  <object id="55" gid="181" x="576" y="128" width="64" height="64"/>
+  <object id="56" gid="181" x="960" y="128" width="64" height="64"/>
+  <object id="57" gid="181" x="1010.64" y="128" width="64" height="64"/>
+  <object id="59" gid="181" x="192" y="128" width="64" height="64"/>
+  <object id="60" gid="181" x="1344" y="128" width="64" height="64"/>
+  <object id="61" gid="181" x="640" y="64" width="64" height="64"/>
+  <object id="62" gid="181" x="704" y="64" width="64" height="64"/>
+  <object id="63" gid="181" x="832" y="64" width="64" height="64"/>
+  <object id="64" gid="181" x="896" y="64" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup id="8" name="KeysLayer">
+  <object id="58" gid="201" x="768" y="256" width="64" height="64"/>
+ </objectgroup>
+ <layer id="2" name="Others" width="25" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,143,
+141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,
+141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141,141
+</data>
+ </layer>
+</map>
