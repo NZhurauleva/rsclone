@@ -5,10 +5,11 @@ class GameSceneFour extends Phaser.Scene {
     this.keyCTRL;
     this.jumpSound;
     this.health = 100;
+    this.healthBoss = 100;
     this.playerSpeed = 1.5;
-    this.enemyMaxY = 1700;
-    this.enemyMinY = -100;
-    this.bossMaxY = 1450;
+    this.enemyMaxY = 1550;
+    this.enemyMinY = 50;
+    this.bossMaxY = 1500;
     this.bossMinY = 100;
     this.keyScore = 0;
     this.isPlayerAlive = true;
@@ -31,6 +32,7 @@ class GameSceneFour extends Phaser.Scene {
     this.load.audio("jump", "assets/sounds/jump.wav");
     this.load.audio("damage", "assets/sounds/damage.mp3");
     this.load.audio("musicfour", "assets/sounds/level4.mp3");
+    this.load.audio("victory", "assets/sounds/victory.mp3");
     this.load.spritesheet("coin", "assets/images/coin.png", { frameWidth: 62, frameHeight: 62 });
     this.load.tilemapTiledJSON("map4", "assets/tilemaps/level4.json");
     this.load.atlas(
@@ -89,6 +91,10 @@ class GameSceneFour extends Phaser.Scene {
     musicfour.setVolume(0.3);
     musicfour.setLoop(true);
     musicfour.play();
+
+    //звук победы//
+    const victorySound = this.sound.add("victory");
+    victorySound.setVolume(0.8);
 
     //===============Создание игрока=============//
     this.player = this.physics.add.sprite(120, 400, "player");
@@ -301,7 +307,7 @@ class GameSceneFour extends Phaser.Scene {
         "fake_object"
       );
       obj.body.width = object.width;
-      obj.body.height = object.height;
+      obj.body.height = object.height - 20;
     });
     this.physics.add.overlap(this.player, fakeObjects, this.gameOver, null, this);
 
@@ -384,6 +390,34 @@ class GameSceneFour extends Phaser.Scene {
       }
     }
 
+    //===============Создание полосы HP Bossa=============//
+    const graphicsBoss = this.add.graphics();
+    graphicsBoss.setScrollFactor(0);
+    setHealthBarBoss(this.healthBoss);
+
+    function updateHealthBarBoss() {
+      this.healthBoss -= 15;
+      setHealthBarBoss(this.healthBoss);
+    }
+
+    function setHealthBarBoss(healthBoss) {
+      const width = 200;
+      const percent = Phaser.Math.Clamp(healthBoss, 0, 100) / 100;
+      graphicsBoss.clear();
+      graphicsBoss.fillStyle(0x808080);
+      graphicsBoss.fillRoundedRect(1350, 10, width, 20, 5);
+      if (percent > 0) {
+        graphicsBoss.fillStyle(0xff0000);
+        graphicsBoss.fillRoundedRect(1350, 10, width * percent, 20, 5);
+      }
+    }
+
+    let textBoss = this.add.text(1350, 35, `Boss HP`, {
+      fontSize: "32px",
+      fill: "white",
+    });
+    text.setScrollFactor(0);
+
     //===============Создание врагов=============//
     //Бомбы/ракеты//
     const enemySpawnBomb = map.getObjectLayer("Enemybomb")["objects"];
@@ -422,9 +456,9 @@ class GameSceneFour extends Phaser.Scene {
     this.boss.setCollideWorldBounds(true);
     this.boss.speed = 4;
     this.physics.add.collider(this.boss, platforms);
-    this.physics.add.overlap(this.player, this.boss, primerkillenemy, null, this);
+    this.physics.add.overlap(this.player, this.boss, primerkillenemy, updateHealthBarBoss, this);
 
-    for (let i = 100; i < 1400; i += 4) {
+    for (let i = 100; i < 1500; i += 4) {
       this.arrjump.push(i);
     }
 
@@ -452,6 +486,9 @@ class GameSceneFour extends Phaser.Scene {
           repeat: 2,
           onComplete: () => {
             boss.destroy();
+            //this.scene.pause();
+            musicfour.stop();
+            victorySound.play();
             let textfinishlevel = this.add.text(screenCenterX, screenCenterY, `YOU WIN`, {
               fontFamily: "Arial",
               color: 'red',
@@ -661,6 +698,7 @@ class GameSceneFour extends Phaser.Scene {
     this.cameras.main.shake(500);
     this.sound.removeByKey('musicfour');
     this.health = 100;
+    this.healthBoss = 100;
     this.coinScore = 0;
     this.keyScore = 0;
     this.touchBoss = 0;
